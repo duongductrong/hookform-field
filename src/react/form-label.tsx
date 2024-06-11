@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-
 "use client"
 
 import React, { forwardRef } from "react"

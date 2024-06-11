@@ -20,7 +20,7 @@ export const FormMessage = React.forwardRef<
       ref={ref}
       id={formMessageId}
       className={cn("form-message", className)}
-      data-error={error ? "error" : "idle"}
+      data-state={error ? "error" : "idle"}
       data-name={name}
       {...props}
     >

@@ -11,11 +11,13 @@ export const FormProvider = ({
   components,
   classNames,
   children,
+  forwardPropsFns,
 }: FormProviderProps) => {
   const values = useMemo<FormContext>(
     () => ({
       components,
       classNames,
+      forwardPropsFns,
     }),
     [components, classNames]
   )

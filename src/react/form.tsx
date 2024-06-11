@@ -1,32 +1,96 @@
 "use client"
 
-import { ComponentProps, ReactNode, forwardRef } from "react"
+import {
+  ComponentPropsWithoutRef,
+  ReactNode,
+  RefObject,
+  useImperativeHandle,
+  useRef,
+} from "react"
 import {
   FieldValues,
   FormProvider as FormPrimitiveProvider,
-  FormProviderProps as FormPrimitiveProviderProps,
+  Resolver,
+  UseFormProps,
+  UseFormReturn,
+  useForm,
 } from "react-hook-form"
 
 export interface FormProps<
   TFieldValues extends FieldValues = FieldValues,
   TContext = any,
   TTransformedValues extends FieldValues | undefined = undefined,
-> extends ComponentProps<"form"> {
+> extends Omit<ComponentPropsWithoutRef<"form">, "onSubmit">,
+    UseFormProps<TFieldValues, TContext> {
+  ref?: RefObject<HTMLFormElement>
+  formRef?: RefObject<UseFormReturn<TFieldValues, TContext, TTransformedValues>>
   children: ReactNode
-  methods: Omit<
-    FormPrimitiveProviderProps<TFieldValues, TContext, TTransformedValues>,
-    "children"
-  >
+  onSubmit?: (data: TFieldValues) => void
 }
 
-export const Form = forwardRef<HTMLFormElement, FormProps<any>>(
-  ({ children, methods, ...props }, ref) => (
+export const Form = <
+  TFieldValues extends FieldValues = FieldValues,
+  TContext = any,
+  TTransformedValues extends FieldValues | undefined = undefined,
+>({
+  children,
+  mode,
+  disabled,
+  reValidateMode,
+  defaultValues,
+  values,
+  errors,
+  resetOptions,
+  context,
+  shouldFocusError,
+  shouldUnregister,
+  shouldUseNativeValidation,
+  progressive,
+  criteriaMode,
+  delayError,
+  formRef,
+  ref,
+  resolver,
+  onSubmit,
+  ...props
+}: FormProps<TFieldValues, TContext, TTransformedValues>) => {
+  const methods = useForm<TFieldValues, TContext, TTransformedValues>({
+    resolver,
+    mode,
+    disabled,
+    reValidateMode,
+    defaultValues,
+    values,
+    errors,
+    resetOptions,
+    context,
+    shouldFocusError,
+    shouldUnregister,
+    shouldUseNativeValidation,
+    progressive,
+    criteriaMode,
+    delayError,
+  })
+
+  const innerFormElementRef = useRef<HTMLFormElement>(null)
+  const innerFormRef = useRef<typeof methods>(null)
+
+  useImperativeHandle(formRef, () => innerFormRef.current as any, [methods])
+  useImperativeHandle(ref, () => innerFormElementRef.current as any, [
+    innerFormElementRef.current,
+  ])
+
+  return (
     <FormPrimitiveProvider {...methods}>
-      <form {...props} ref={ref}>
+      <form
+        {...props}
+        onSubmit={onSubmit ? methods.handleSubmit(onSubmit as any) : undefined}
+        ref={innerFormElementRef}
+      >
         {children}
       </form>
     </FormPrimitiveProvider>
   )
-)
+}
 
 Form.displayName = "Form"

@@ -126,8 +126,6 @@
   "resolutions": {},
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
-    "@types/lodash": "^4.17.5",
-    "clsx": "^2.1.1",
-    "lodash": "^4.17.21"
+    "clsx": "^2.1.1"
   }
 }
