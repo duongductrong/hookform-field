@@ -10,7 +10,7 @@ import { FormItem } from "./form-item"
 import { FormLabel } from "./form-label"
 import { FormMessage } from "./form-message"
 import { useCurrentFormContext } from "./hooks/use-context"
-import { cn } from "./tailwind"
+import { cn } from "./utils"
 
 export interface FormFieldStandardBaseProps {
   className?: string

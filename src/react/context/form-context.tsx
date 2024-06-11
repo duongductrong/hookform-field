@@ -11,6 +11,7 @@ export interface FormContext {
     description?: string
     label?: string
     message?: string
+    item?: string
   }
   components: FormComponent
 }

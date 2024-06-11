@@ -4,7 +4,7 @@
 
 import React, { forwardRef } from "react"
 import { useFormField } from "./hooks/use-form-field"
-import { cn } from "./tailwind"
+import { cn } from "./utils"
 
 export const FormLabel = forwardRef<
   React.ElementRef<"label">,

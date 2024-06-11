@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { cn } from "./tailwind"
+import { cn } from "./utils"
 import { useFormField } from "./hooks/use-form-field"
 
 export const FormMessage = React.forwardRef<
