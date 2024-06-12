@@ -16,3 +16,5 @@ export * from "./hooks/use-rhf-hooks"
 
 export * from "./types/field"
 export * from "./utils"
+
+export * from "./field-base"
