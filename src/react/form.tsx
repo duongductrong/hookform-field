@@ -10,7 +10,6 @@ import {
 import {
   FieldValues,
   FormProvider as FormPrimitiveProvider,
-  Resolver,
   UseFormProps,
   UseFormReturn,
   useForm,
@@ -73,9 +72,8 @@ export const Form = <
   })
 
   const innerFormElementRef = useRef<HTMLFormElement>(null)
-  const innerFormRef = useRef<typeof methods>(null)
 
-  useImperativeHandle(formRef, () => innerFormRef.current as any, [methods])
+  useImperativeHandle(formRef, () => methods as any, [methods])
   useImperativeHandle(ref, () => innerFormElementRef.current as any, [
     innerFormElementRef.current,
   ])
