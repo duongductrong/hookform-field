@@ -14,7 +14,7 @@ export const FormDescription = forwardRef<
     <p
       ref={ref}
       id={formDescriptionId}
-      className={cn("form-description", className)}
+      className={cn("field-description", className)}
       {...props}
     />
   )

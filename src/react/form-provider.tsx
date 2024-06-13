@@ -7,19 +7,12 @@ export interface FormProviderProps extends FormContext {
   children: ReactNode
 }
 
-export const FormProvider = ({
-  components,
-  classNames,
-  children,
-  forwardPropsFns,
-}: FormProviderProps) => {
+export const FormProvider = ({ classNames, children }: FormProviderProps) => {
   const values = useMemo<FormContext>(
     () => ({
-      components,
       classNames,
-      forwardPropsFns,
     }),
-    [components, classNames]
+    [classNames]
   )
   return <Context.Provider value={values}>{children}</Context.Provider>
 }

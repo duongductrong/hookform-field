@@ -13,7 +13,7 @@ export const FormLabel = forwardRef<
   return (
     <label
       ref={ref}
-      className={cn("form-label", className)}
+      className={cn("field-label", className)}
       data-name={name}
       data-state={error ? "error" : "idle"}
       htmlFor={formItemId}
