@@ -13,6 +13,6 @@ export * from "./form-provider"
 export * from "./hooks/use-context"
 export * from "./hooks/use-form-field"
 export * from "./hooks/use-rhf-hooks"
+export * from "./hooks/use-form-ref"
 
-export * from "./types/field"
 export * from "./utils"
