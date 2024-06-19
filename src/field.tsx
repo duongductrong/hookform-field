@@ -1,16 +1,24 @@
 "use client"
 
-import { HTMLInputTypeAttribute, Suspense, memo } from "react"
+import { HTMLInputTypeAttribute, ReactNode, Suspense, memo } from "react"
 import { get } from "react-hook-form"
-import AsteriskIcon from "./components/asterisk-icon"
 import { FormControl } from "./form-control"
 import { FormDescription } from "./form-description"
 import { FormField } from "./form-field"
 import { FormItem } from "./form-item"
 import { FormLabel } from "./form-label"
 import { FormMessage } from "./form-message"
-import { useCurrentFormContext } from "./hooks/use-context"
 import { cn } from "./utils"
+
+export interface CreateFieldOptions {
+  defineClassNames: {
+    description?: string
+    label?: string
+    message?: string
+    input?: string
+    root?: string
+  }
+}
 
 type InferComponentProps<T> = T extends React.ComponentType<infer P> ? P : never
 
@@ -22,6 +30,7 @@ export type FieldBaseProps = {
   labelClassName?: string
   messageClassName?: string
   descriptionClassName?: string
+  ClassName?: string
 
   description?: string
   disabled?: boolean
@@ -30,10 +39,13 @@ export type FieldBaseProps = {
   placeholder?: string
   required?: boolean
   type?: HTMLInputTypeAttribute
+
+  suspenseFallback?: ReactNode
 }
 
 export function createField<T extends Record<string, React.ComponentType<any>>>(
-  components: T
+  components: T,
+  options?: CreateFieldOptions
 ) {
   type ComponentName = keyof T
   type SyntheticFieldProps = { component: ComponentName } & FieldBaseProps &
@@ -51,13 +63,14 @@ export function createField<T extends Record<string, React.ComponentType<any>>>(
     descriptionClassName,
     description,
     label,
+    suspenseFallback,
     ...baseProps
   }) => {
-    const { classNames: customClassnames } = useCurrentFormContext()
+    const customClassnames = options?.defineClassNames
     const InputComp = components[component]
 
     return (
-      <Suspense>
+      <Suspense fallback={suspenseFallback}>
         <FormField
           name={name}
           render={({ field, formState: { errors } }) => {
@@ -69,9 +82,10 @@ export function createField<T extends Record<string, React.ComponentType<any>>>(
                     className={cn(customClassnames?.label, labelClassName)}
                   >
                     {label}
-                    {baseProps?.required ? (
+                    {/* TODO: Will implement soon. */}
+                    {/* {baseProps?.required ? (
                       <AsteriskIcon className="ml-1 h-3 w-3" />
-                    ) : null}
+                    ) : null} */}
                   </FormLabel>
                 ) : null}
                 <FormControl>

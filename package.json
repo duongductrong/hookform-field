@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "taurus-form",
+  "name": "hookform-field",
   "description": "The form portal to easy manage form fields built with react-hook-form",
   "version": "1.0.0",
   "author": {
@@ -8,11 +8,16 @@
     "name": "Duong Duc Trong",
     "url": "https://github.com/duongductrong"
   },
-  "license": "",
-  "keywords": [],
+  "license": "MIT",
+  "keywords": [
+    "react-hook-form",
+    "react",
+    "nextjs",
+    "form portal easy manage"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/duongductrong/taurus-form"
+    "url": "https://github.com/duongductrong/hookform-field"
   },
   "scripts": {
     "dev": "concurrently \"pnpm build --watch\" \"pnpm storybook\" \"pnpm test\" ",
