@@ -4,17 +4,18 @@ import { forwardRef, HTMLAttributes, useId, useMemo } from "react"
 import FormItemContext from "./context/form-item-context"
 import { cn } from "./utils"
 
-export const FormItem = forwardRef<
-  HTMLDivElement,
-  HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => {
-  const id = useId()
+export interface FormItemProps extends HTMLAttributes<HTMLDivElement> {}
 
-  return (
-    <FormItemContext.Provider value={useMemo(() => ({ id }), [id])}>
-      <div ref={ref} className={cn("field-item", className)} {...props} />
-    </FormItemContext.Provider>
-  )
-})
+export const FormItem = forwardRef<HTMLDivElement, FormItemProps>(
+  ({ className, ...props }, ref) => {
+    const id = useId()
+
+    return (
+      <FormItemContext.Provider value={useMemo(() => ({ id }), [id])}>
+        <div ref={ref} className={cn("field-item", className)} {...props} />
+      </FormItemContext.Provider>
+    )
+  }
+)
 
 FormItem.displayName = "FormItem"

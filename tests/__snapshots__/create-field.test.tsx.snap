@@ -1,0 +1,54 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders correctly 1`] = `
+<form>
+  <div
+    className="field-item"
+  >
+    <label
+      className="field-label"
+      data-name="a"
+      data-state="idle"
+      htmlFor=":r0:-form-item"
+    >
+      Input
+    </label>
+    <input
+      type="text"
+    />
+  </div>
+  <div
+    className="field-item"
+  >
+    <input
+      type="number"
+    />
+  </div>
+  <div
+    className="field-item"
+  >
+    <label
+      className="field-label"
+      data-name="c"
+      data-state="idle"
+      htmlFor=":r2:-form-item"
+    >
+      File
+    </label>
+    <input
+      type="file"
+    />
+  </div>
+  <div
+    className="field-item"
+  >
+    <select>
+      <option
+        value="test"
+      >
+        Test
+      </option>
+    </select>
+  </div>
+</form>
+`;

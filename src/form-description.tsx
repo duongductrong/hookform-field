@@ -4,9 +4,12 @@ import { forwardRef, HTMLAttributes } from "react"
 import { useFormField } from "./hooks/use-form-field"
 import { cn } from "./utils"
 
+export interface FormDescriptionProps
+  extends HTMLAttributes<HTMLParagraphElement> {}
+
 export const FormDescription = forwardRef<
   HTMLParagraphElement,
-  HTMLAttributes<HTMLParagraphElement>
+  FormDescriptionProps
 >(({ className, ...props }, ref) => {
   const { formDescriptionId } = useFormField()
 

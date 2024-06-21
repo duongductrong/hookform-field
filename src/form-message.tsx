@@ -4,9 +4,12 @@ import React from "react"
 import { cn } from "./utils"
 import { useFormField } from "./hooks/use-form-field"
 
+export interface FormMessageProps
+  extends React.HTMLAttributes<HTMLParagraphElement> {}
+
 export const FormMessage = React.forwardRef<
   HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
+  FormMessageProps
 >(({ className, children, ...props }, ref) => {
   const { name, error, formMessageId } = useFormField()
   const body = error ? String(error?.message) : children
