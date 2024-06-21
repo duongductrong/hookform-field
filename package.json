@@ -2,7 +2,7 @@
   "type": "module",
   "name": "hookform-field",
   "description": "The form portal to easy manage form fields built with react-hook-form",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "email": "duongductrong06@gmail.com",
     "name": "Duong Duc Trong",
