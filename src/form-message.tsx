@@ -1,35 +1,35 @@
 "use client"
 
 import React from "react"
-import { cn } from "./utils"
 import { useFormField } from "./hooks/use-form-field"
+import { ForwardRefComponent } from "./react-polymorphic"
+import { cn } from "./utils"
 
 export interface FormMessageProps
   extends React.HTMLAttributes<HTMLParagraphElement> {}
 
-export const FormMessage = React.forwardRef<
-  HTMLParagraphElement,
-  FormMessageProps
->(({ className, children, ...props }, ref) => {
-  const { name, error, formMessageId } = useFormField()
-  const body = error ? String(error?.message) : children
+export const FormMessage = React.forwardRef(
+  ({ component: Comp = "p", className, children, ...props }, ref) => {
+    const { name, error, formMessageId } = useFormField()
+    const body = error ? String(error?.message) : children
 
-  if (!body) {
-    return null
+    if (!body) {
+      return null
+    }
+
+    return (
+      <Comp
+        ref={ref}
+        id={formMessageId}
+        className={cn("field-message", className)}
+        data-state={error ? "error" : "idle"}
+        data-name={name}
+        {...props}
+      >
+        {body}
+      </Comp>
+    )
   }
-
-  return (
-    <p
-      ref={ref}
-      id={formMessageId}
-      className={cn("field-message", className)}
-      data-state={error ? "error" : "idle"}
-      data-name={name}
-      {...props}
-    >
-      {body}
-    </p>
-  )
-})
+) as ForwardRefComponent<"p", FormMessageProps>
 
 FormMessage.displayName = "FormMessage"

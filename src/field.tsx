@@ -1,6 +1,12 @@
 "use client"
 
-import { HTMLInputTypeAttribute, ReactNode, Suspense, memo } from "react"
+import {
+  HTMLInputTypeAttribute,
+  ReactNode,
+  Suspense,
+  memo,
+  useMemo,
+} from "react"
 import { get } from "react-hook-form"
 import { FormControl } from "./form-control"
 import { FormDescription } from "./form-description"
@@ -11,12 +17,19 @@ import { FormMessage } from "./form-message"
 import { cn } from "./utils"
 
 export interface CreateFieldOptions {
-  defineClassNames: {
+  classNames?: {
     description?: string
     label?: string
     message?: string
     input?: string
     root?: string
+  }
+
+  components?: {
+    root?: keyof JSX.IntrinsicElements
+    label?: keyof JSX.IntrinsicElements
+    message?: keyof JSX.IntrinsicElements
+    description?: keyof JSX.IntrinsicElements
   }
 }
 
@@ -66,8 +79,10 @@ export function createField<T extends Record<string, React.ComponentType<any>>>(
     suspenseFallback,
     ...baseProps
   }) => {
-    const customClassnames = options?.defineClassNames
-    const InputComp = components[component]
+    const customComponents = options?.components
+    const customClassnames = options?.classNames
+
+    const InputComp = useMemo(() => components[component], [component])
 
     return (
       <Suspense fallback={suspenseFallback}>
@@ -76,9 +91,13 @@ export function createField<T extends Record<string, React.ComponentType<any>>>(
           render={({ field, formState: { errors } }) => {
             const errorState = get(errors, name)
             return (
-              <FormItem className={cn(customClassnames?.root, className)}>
+              <FormItem
+                component={customComponents?.root || "div"}
+                className={cn(customClassnames?.root, className)}
+              >
                 {label ? (
                   <FormLabel
+                    component={customComponents?.label || "label"}
                     className={cn(customClassnames?.label, labelClassName)}
                   >
                     {label}
@@ -103,6 +122,7 @@ export function createField<T extends Record<string, React.ComponentType<any>>>(
 
                 {errorState?.message ? null : description ? (
                   <FormDescription
+                    component={customComponents?.description || "p"}
                     className={cn(
                       customClassnames?.description,
                       descriptionClassName
@@ -112,6 +132,7 @@ export function createField<T extends Record<string, React.ComponentType<any>>>(
 
                 {errorState && errorState.message ? (
                   <FormMessage
+                    component={customComponents?.description || "p"}
                     className={cn(customClassnames?.message, messageClassName)}
                   />
                 ) : null}
