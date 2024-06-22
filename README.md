@@ -24,7 +24,7 @@ First, install the package via npm/yarn/pnpm:
 npm install hookform-field react-hook-form
 
 # yarn
-yarn install hookform-field react-hook-form
+yarn add hookform-field react-hook-form
 
 # pnpm
 pnpm install hookform-field react-hook-form
