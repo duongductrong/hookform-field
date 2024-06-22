@@ -1,11 +1,13 @@
 ![Thumbnail](./docs/thumbnail.png)
 
 <!-- [![Build Status](https://img.shields.io/github/actions/workflow/status/duongductrong/hookform-field/lint-and-type.yml?branch=main&style=flat&colorA=000000&colorB=000000)](https://github.com/duongductrong/hookform-field/actions?query=workflow%3ALint) -->
+
 [![Build Size](https://img.shields.io/bundlephobia/minzip/hookform-field?label=bundle%20size&style=flat&colorA=000000&colorB=000000)](https://bundlephobia.com/result?p=hookform-field)
 [![Version](https://img.shields.io/npm/v/hookform-field?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/hookform-field)
 [![Downloads](https://img.shields.io/npm/dt/hookform-field.svg?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/hookform-field)
 
 ## Features
+
 - Type-safe
 - Strongly reusable
 - Easy to use
@@ -121,9 +123,9 @@ The `<Field />` component will be type-safe based on your component values, sugg
 Finally, render your form in your application:
 
 ```javascript
-import React from "react";
-import ReactDOM from "react-dom";
-import MyForm from "./MyForm"; // Import the MyForm component you created
+import React from "react"
+import ReactDOM from "react-dom"
+import MyForm from "./MyForm" // Import the MyForm component you created
 
 const App = () => {
   return (
@@ -131,8 +133,8 @@ const App = () => {
       <h1>My Custom Form</h1>
       <MyForm />
     </div>
-  );
-};
+  )
+}
 ```
 
 ## Testing

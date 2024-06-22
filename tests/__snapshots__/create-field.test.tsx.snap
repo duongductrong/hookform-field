@@ -52,3 +52,56 @@ exports[`renders correctly 1`] = `
   </div>
 </form>
 `;
+
+exports[`renders correctly custom components 1`] = `
+<form>
+  <section
+    className="field-item"
+  >
+    <p
+      className="field-label"
+      data-name="a"
+      data-state="idle"
+      htmlFor=":r4:-form-item"
+    >
+      Input
+    </p>
+    <input
+      type="text"
+    />
+  </section>
+  <section
+    className="field-item"
+  >
+    <input
+      type="number"
+    />
+  </section>
+  <section
+    className="field-item"
+  >
+    <p
+      className="field-label"
+      data-name="c"
+      data-state="idle"
+      htmlFor=":r6:-form-item"
+    >
+      File
+    </p>
+    <input
+      type="file"
+    />
+  </section>
+  <section
+    className="field-item"
+  >
+    <select>
+      <option
+        value="test"
+      >
+        Test
+      </option>
+    </select>
+  </section>
+</form>
+`;
