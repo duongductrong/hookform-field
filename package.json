@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "hookform-field",
-  "description": "The form portal to easy manage form fields built with react-hook-form",
+  "description": "Easy manage form fields, ensuring type-safety and strong reusability built with react-hook-form",
   "version": "1.0.1",
   "author": {
     "email": "duongductrong06@gmail.com",
@@ -13,7 +13,8 @@
     "react-hook-form",
     "react",
     "nextjs",
-    "form portal easy manage"
+    "manage fields",
+    "form"
   ],
   "repository": {
     "type": "git",

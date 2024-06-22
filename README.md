@@ -1,6 +1,9 @@
-# Hookform Field
-
 ![Thumbnail](./docs/thumbnail.png)
+
+<!-- [![Build Status](https://img.shields.io/github/actions/workflow/status/duongductrong/hookform-field/lint-and-type.yml?branch=main&style=flat&colorA=000000&colorB=000000)](https://github.com/duongductrong/hookform-field/actions?query=workflow%3ALint) -->
+[![Build Size](https://img.shields.io/bundlephobia/minzip/hookform-field?label=bundle%20size&style=flat&colorA=000000&colorB=000000)](https://bundlephobia.com/result?p=hookform-field)
+[![Version](https://img.shields.io/npm/v/hookform-field?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/hookform-field)
+[![Downloads](https://img.shields.io/npm/dt/hookform-field.svg?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/hookform-field)
 
 ## Features
 - Type-safe
@@ -40,6 +43,8 @@ You can create custom form fields by using the `createField` function. For examp
 import React from "react";
 import { createField } from "hookform-field";
 
+import Foo from 'your_component_path'
+
 interface InputProps {}
 interface NumberProps {}
 interface FileProps {}
@@ -60,7 +65,9 @@ const Field = createField({
       ))}
     </select>
   ),
-});
+
+  foo: Foo,
+}, { defineClassNames: {} });
 
 export default Field;
 ```
@@ -74,13 +81,32 @@ import React from "react";
 import { Form } from "hookform-field";
 import Field from "@/components/form/field"; // Import the Field component you created
 
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod" // Import your resolver from hookform
+
+const schema = z.object({
+  name: z.string(),
+  amount: z.number(),
+  avatar: z.any(),
+  age: z.string(),
+})
+
+type SchemaInferred = z.infer<typeof schema>
+
+const resolver = zodResolver(schema)
+
 const MyForm = () => {
   return (
-    <Form>
-      <Field label="Input" component="text" name="a" />
-      <Field component="number" name="b" />
-      <Field label="File" component="file" name="c" />
-      <Field component="select" name="d" options={[{ value: 'test', label: 'Test' }]} />
+    // `useForm` wrapped by <Form /> of hookform-field help you save time define it
+    <Form<SchemaInferred>
+      resolver={resolver}
+      defaultValues={{ name: "Bob" }}
+      onSubmit={(values) => console.log(values)} // <-- type-safe / infer type
+    >
+      <Field label="Name" component="text" name="name" />
+      <Field component="number" name="amount" />
+      <Field label="File" component="file" name="avatar" />
+      <Field component="select" name="age" options={[{ value: '1', label: '1' }, { value: '2', label: '2' }]} />
     </Form>
   );
 };
