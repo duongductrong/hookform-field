@@ -69,7 +69,7 @@ const Field = createField({
   ),
 
   foo: Foo,
-}, { defineClassNames: {} });
+});
 
 export default Field;
 ```
