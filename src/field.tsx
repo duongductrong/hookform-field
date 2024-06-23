@@ -31,6 +31,8 @@ export interface CreateFieldOptions {
     message?: keyof JSX.IntrinsicElements
     description?: keyof JSX.IntrinsicElements
   }
+
+  suspenseFallback?: ReactNode
 }
 
 type InferComponentProps<T> = T extends React.ComponentType<infer P> ? P : never
@@ -81,11 +83,12 @@ export function createField<T extends Record<string, React.ComponentType<any>>>(
   }) => {
     const customComponents = options?.components
     const customClassnames = options?.classNames
+    const customSuspenseFallback = options?.suspenseFallback
 
     const InputComp = useMemo(() => components[component], [component])
 
     return (
-      <Suspense fallback={suspenseFallback}>
+      <Suspense fallback={customSuspenseFallback || suspenseFallback}>
         <FormField
           name={name}
           render={({ field, formState: { errors } }) => {
