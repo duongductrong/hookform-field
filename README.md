@@ -6,6 +6,9 @@
 [![Version](https://img.shields.io/npm/v/hookform-field?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/hookform-field)
 [![Downloads](https://img.shields.io/npm/dt/hookform-field.svg?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/hookform-field)
 
+## Documentation
+[The documentation here](https://hookform-field.vercel.app/quick-start)
+
 ## Features
 
 - Type-safe
