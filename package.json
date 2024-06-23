@@ -2,7 +2,7 @@
   "type": "module",
   "name": "hookform-field",
   "description": "Easy manage form fields, ensuring type-safety and strong reusability built with react-hook-form",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": {
     "email": "duongductrong06@gmail.com",
     "name": "Duong Duc Trong",
