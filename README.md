@@ -139,10 +139,6 @@ const App = () => {
 }
 ```
 
-## Testing
-
-TBD
-
 ## Conclusion
 
 This documentation provides a comprehensive guide to using the custom form components in your React application. By following these steps, you can create and render various form fields and ensure they function correctly through testing.
