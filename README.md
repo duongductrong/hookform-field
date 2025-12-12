@@ -2,7 +2,6 @@
 
 <!-- [![Build Status](https://img.shields.io/github/actions/workflow/status/duongductrong/hookform-field/lint-and-type.yml?branch=main&style=flat&colorA=000000&colorB=000000)](https://github.com/duongductrong/hookform-field/actions?query=workflow%3ALint) -->
 
-[![Build Size](https://img.shields.io/bundlephobia/minzip/hookform-field?label=bundle%20size&style=flat&colorA=000000&colorB=000000)](https://bundlephobia.com/result?p=hookform-field)
 [![Version](https://img.shields.io/npm/v/hookform-field?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/hookform-field)
 [![Downloads](https://img.shields.io/npm/dt/hookform-field.svg?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/hookform-field)
 
